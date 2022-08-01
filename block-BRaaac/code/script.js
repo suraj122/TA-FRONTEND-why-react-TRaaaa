@@ -4,7 +4,7 @@ let rootElm = document.querySelector("ul");
 let allMovies = [
   {
     name: "The Intern",
-    watched: false,
+    watched: true,
   },
 ];
 
@@ -53,7 +53,11 @@ function createUI(data, root) {
       "li",
       {},
       elm("label", { for: i }, movie.name),
-      elm("button", { id: i }, `${movie.watched ? "Watched" : "To watch"}`)
+      elm(
+        "button",
+        { id: i, onclick: handleChange },
+        movie.watched ? "Watched" : "To watch"
+      )
     );
     root.append(li);
   });
