@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 48px auto;
+  padding: 48px;
+}
+.text-center {
+  text-align: center;
+}
+.blog {
+  display: flex;
+  justify-content: space-between;
+}
+li {
+  flex: 0 1 30%;
+  list-style: none;
+}
+img {
+  width: 100%;
+}
