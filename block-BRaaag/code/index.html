@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Watch List App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>My Movie Watch List</h1>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Enter a Movie Name"
+      />
+      <ul class="list"></ul>
+    </main>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      let input = document.querySelector("input");
+      let rootElm = document.querySelector("ul");
+
+      let allMovies = [
+        {
+          name: "The Intern",
+          watched: true,
+        },
+      ];
+
+      input.addEventListener("keyup", (event) => {
+        if (event.keyCode === 13) {
+          allMovies.push({
+            name: event.target.value,
+            watched: false,
+          });
+          event.target.value = "";
+        }
+        createUI(allMovies, rootElm);
+      });
+
+      function handleChange(event) {
+        let id = event.target.id;
+        allMovies[id].watched = !allMovies[id].watched;
+        createUI(allMovies, rootElm);
+      }
+
+      function createUI(data, root) {
+        // root.innerHTML = "";
+        let todoUI = data.map((movie, i) => {
+          return (
+            <li key={i}>
+              <label htmlFor={i}>{movie.name}</label>
+              <button id={i} onClick={handleChange}>
+                {movie.watched ? "Watched" : "To watch"}
+              </button>
+            </li>
+          );
+        });
+        ReactDOM.render(todoUI, root);
+      }
+
+      createUI(allMovies, rootElm);
+    </script>
+  </body>
+</html>
