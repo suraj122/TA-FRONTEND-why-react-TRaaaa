@@ -62,17 +62,24 @@
             "https://techcrunch.com/wp-content/uploads/2019/07/GettyImages-846875220.jpg?w=1390&crop=1",
         },
       ];
-      let blog = articles.map((article) => {
+      function Article(props) {
         return (
           <li>
             <article>
-              <img src={article.imageURL} alt={article.category} />
-              <h3>{article.title}</h3>
-              <h4>{article.subTitle}</h4>
-              <p>{article.description}</p>
+              <img
+                src={props.articleInfo.imageURL}
+                alt={props.articleInfo.category}
+              />
+              <time datetime="">{props.articleInfo.date.getDate()}</time>
+              <h3>{props.articleInfo.title}</h3>
+              <h4>{props.articleInfo.subTitle}</h4>
+              <p>{props.articleInfo.description}</p>
             </article>
           </li>
         );
+      }
+      let blog = articles.map((article) => {
+        return <Article articleInfo={article} />;
       });
       ReactDOM.render(blog, document.getElementById("root"));
     </script>
